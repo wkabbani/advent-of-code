@@ -12,7 +12,7 @@ def get_info(data):
     idx = 0
     while idx < len(data):
         pass_info = {} 
-        while idx < len(data) and data[idx] is not '':
+        while idx < len(data) and data[idx] != '':
             chunks = data[idx].split(' ')
             for chunck in chunks:
                 kv = chunck.split(':')
