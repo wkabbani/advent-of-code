@@ -2,10 +2,12 @@ import os
 import sys
 import math
 
+
 def get_data():
     with open(os.path.join(sys.path[0], 'input.txt')) as f:
         data = [line.strip() for line in f]
     return data
+
 
 def get_seat_ids(data):
     seat_ids = []
@@ -33,15 +35,16 @@ def get_seat_id(seat_ids):
     potential_seats = list(set(full_range) - set(seat_ids))
     for seat in potential_seats:
         if (seat - 1) in seat_ids and (seat + 1) in seat_ids:
-            return seat # assume there is only one
+            return seat  # assume there is only one
 
 
 def get_result():
     seat_ids = get_seat_ids(get_data())
 
     print(f'part-1: {max(seat_ids)}')
-    
+
     print(f'part-2: {get_seat_id(seat_ids)}')
+
 
 # part 1 & 2
 get_result()

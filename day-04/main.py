@@ -2,16 +2,18 @@ import os
 import sys
 import re
 
+
 def get_data():
     with open(os.path.join(sys.path[0], 'input.txt')) as f:
         data = [line.strip() for line in f]
     return data
 
+
 def get_info(data):
     passports = []
     idx = 0
     while idx < len(data):
-        pass_info = {} 
+        pass_info = {}
         while idx < len(data) and data[idx] != '':
             chunks = data[idx].split(' ')
             for chunck in chunks:
@@ -22,6 +24,7 @@ def get_info(data):
         passports.append(pass_info)
     return passports
 
+
 def is_valid_1(passport):
     if len(passport.keys()) == 8:
         return True
@@ -29,6 +32,7 @@ def is_valid_1(passport):
         return True
     else:
         return False
+
 
 def is_valid_hgt(hgt):
     sr = re.search("(\d+)(cm|in)", hgt)
@@ -40,6 +44,7 @@ def is_valid_hgt(hgt):
         elif unit == 'in' and (59 <= value <= 76):
             return True
     return False
+
 
 def is_valid_2(passport):
     if 'byr' not in passport or not (1920 <= int(passport['byr']) <= 2002):
@@ -58,6 +63,7 @@ def is_valid_2(passport):
         return False
     return True
 
+
 def get_result(part):
     n_valid = 0
     is_valid = is_valid_1 if part == 1 else is_valid_2
@@ -66,6 +72,7 @@ def get_result(part):
         if is_valid(pass_):
             n_valid += 1
     return n_valid
+
 
 # part 1
 print(get_result(1))
